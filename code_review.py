@@ -2,7 +2,7 @@ import google.generativeai as genai
 import os
 
 # Set API Key
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDCjk_rfU-IFTd7rCTdT4syYjtUA4f78Vo"  # Replace with your actual key
+os.environ["GOOGLE_API_KEY"] = "Enter Your API Key"  # Replace with your actual key
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 # Function to review code using Gemini AI

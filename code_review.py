@@ -3,7 +3,7 @@ import google.generativeai as ai
 
 
 
-ai.configure(api_key = "AIzaSyA7FDc0YOzhcQhSHVU8cfo70R0VUcybxGU")
+ai.configure(api_key = "AIzaSyCmhIRPhIc4UK9sAczAb0hItD-svoLGG0Q")
 
 
 sys_prompt = """You are an advanced Python instructor and code reviewer.Your task is to analyze the given Python code, identify potential bugs, logical errors, or areas for improvement, and provide suggestions. Focus solely on Python and coding questions, providing example-based explanations.

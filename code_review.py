@@ -1,7 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 # Configure Gemini AI with API Key
-genai.configure(api_key="AIzaSyCmhIRPhIc4UK9sAczAb0hItD-svoLGG0Q")
+genai.configure(api_key="Enter your API Key")
 # System instruction for AI
 system_prompt = """You are a Python code reviewer. You should review the code, identify errors,
 provide improvements, and give a rating out of 5. Only accept Python code as input."""

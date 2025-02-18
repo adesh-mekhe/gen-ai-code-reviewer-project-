@@ -1,9 +1,8 @@
 import streamlit as st
 import google.generativeai as genai
 
-# Load API key securely from Streamlit secrets
-api_key = st.secrets["api_keys"]["GEMINI_API_KEY"]
-genai.configure(api_key=api_key)
+# Configure Gemini AI with API Key
+genai.configure(api_key="AIzaSyCmhIRPhIc4UK9sAczAb0hItD-svoLGG0Q")
 
 # System instruction for AI
 system_prompt = """You are a Python code reviewer. You should review the code, identify errors,

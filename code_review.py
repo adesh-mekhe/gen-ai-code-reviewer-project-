@@ -1,26 +1,28 @@
 import streamlit as st
-import google.generativeai as ai
-
-
-
-ai.configure(api_key = "AIzaSyCmhIRPhIc4UK9sAczAb0hItD-svoLGG0Q")
-
-
-sys_prompt = """You are an advanced Python instructor and code reviewer.Your task is to analyze the given Python code, identify potential bugs, logical errors, or areas for improvement, and provide suggestions. Focus solely on Python and coding questions, providing example-based explanations.
-                For any non-Python-related queries, refer the user to Google links, clarifying that you cannot answer those questions. 
-                Give feedback on potential bugs along with suggestions for fixes. Maintain the output as Bug report (as Bold header), Fixed code, Explaination.
-                Have all these 3 headings in BOLD format.
-                """
-
-gemini_model = ai.GenerativeModel(model_name="models/gemini-1.5-pro", system_instruction=sys_prompt)
-
-st.title("🚀AI-driven Python Code Reviewer")
-
-user_input = st.text_area(label="Place your Python code here")
-
-btn_click = st.button("Review")
-
-if btn_click == True:
-    response = gemini_model.generate_content(user_input)
-    print("OUTPUT ON TERMINAL: ", len(response.text))
-    st.write(response.text)
+import google.generativeai as genai
+# Configure Gemini AI with API Key
+genai.configure(api_key="AIzaSyCmhIRPhIc4UK9sAczAb0hItD-svoLGG0Q")
+# System instruction for AI
+system_prompt = """You are a Python code reviewer. You should review the code, identify errors,
+provide improvements, and give a rating out of 5. Only accept Python code as input."""
+# Initialize Gemini AI
+gemini = genai.GenerativeModel(
+    model_name="gemini-1.5-flash",
+    system_instruction=system_prompt
+)
+# Streamlit UI
+st.title("🚀 Python Code Reviewer with Gemini AI")
+st.write("Enter your Python code snippet below, and the AI will review it.")
+# Text input for user
+user_prompt = st.text_area("📌 Enter your Python code:", height=250)
+# Button to process the code
+if st.button("🔍 Review Code"):
+    if user_prompt.strip():
+        with st.spinner("Reviewing your code... ⏳"):
+            response = gemini.generate_content(user_prompt, stream=True)
+        # Display AI Review
+        st.subheader("✅ AI Review:")
+        for chunk in response:
+            st.write(chunk.text)
+    else:
+        st.warning("⚠ Please enter a Python code snippet first.")
